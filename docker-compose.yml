@@ -8,14 +8,15 @@ networks:
 
 services:
   janus-gateway:
-    image: mcroth/docker-janus 
-    container_name: janus-gateway
+    image: gjovanov/janus-docker 
+    container_name: janus
     volumes:
       - ./janus/etc/janus/:/opt/janus/etc/janus/
       - ./janus/janus.log:/var/log/janus.log
     ports:
       - 8088:8088
       - 8188:8188
+      - 8081:8080
     networks:
       - back-tier
       - front-tier
