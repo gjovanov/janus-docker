@@ -1,8 +1,8 @@
 include env_make
-NS = mcroth
+NS = gjovanov
 VERSION ?= latest
 
-REPO = docker-janus
+REPO = janus-docker
 NAME = janus
 INSTANCE = jessie
 

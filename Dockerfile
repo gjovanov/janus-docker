@@ -1,6 +1,6 @@
 ############################################################
 # Dockerfile - Janus Gateway on Debian Jessie
-# https://github.com/krull/docker-janus
+# https://github.com/gjovanov/janus-docker
 ############################################################
 
 # set base image debian jessie
