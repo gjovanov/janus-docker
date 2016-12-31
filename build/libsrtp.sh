@@ -4,6 +4,6 @@ cd libsrtp
 git checkout v1.5.0
 ./configure --prefix=/usr --enable-openssl
 make libsrtp.so
-sudo make install
+make install
 cd ..
 rm -rf libsrtp
