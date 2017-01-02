@@ -9,7 +9,7 @@
 
 ## Limitations
 
-Disables RabbitMQ, Admin and Secure Websockets
+Disables RabbitMQ, Docs
 
 ## Build
 
@@ -17,11 +17,14 @@ Disables RabbitMQ, Admin and Secure Websockets
 
 ## Ports
 
-| Port   | Description   |
-|--------|---------------|
-| 80     | HTML-Examples |
-| 8088   | RESTful API   |
-| 8188   | WebSocket API |
+| Port   | Description          |
+|--------|----------------------|
+| 8081   | HTML-Examples        |
+| 8088   | RESTful API          |
+| 8089   | Secure RESTful API   |
+| 8188   | WebSocket API        |
+| 8189   | Secure WebSocket API |
+
 
 ## Environment variables
 
@@ -33,4 +36,4 @@ This container does not need any container linked to.
 
 ## Run
 
-`docker run -d -p 80:80 -p 8088:8088 -p 8188:8188 efacilitation/docker-janus-webrtc-gateway:latest`
+`docker run -d -p 80:80 -p 8088:8088 -p 8188:8188 gjovanov/janus-docker:latest`

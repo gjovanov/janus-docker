@@ -3,7 +3,7 @@ MAINTAINER Goran Jovanov <goran.jovanov@gmail.com>
 
 # bootstrap environment
 ENV DEPS_HOME="/root/janus"
-ENV SCRIPTS_PATH="/scripts"
+ENV SCRIPTS_PATH="/root/scripts"
 
 # use aarnet mirror for quicker building while developing
 RUN sed -i 's/archive.ubuntu.com/mirror.aarnet.edu.au\/pub\/ubuntu\/archive/g' /etc/apt/sources.list
