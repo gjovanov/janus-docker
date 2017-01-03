@@ -1,9 +1,9 @@
 #!/bin/bash
 
-cd $DEPS_HOME/dl
+cd $JANUS_PATH/dl
 git clone https://github.com/sctplab/usrsctp
 cd usrsctp
 ./bootstrap
-./configure --prefix=$DEPS_HOME
+./configure --prefix=$USR_PATH
 make
 make install

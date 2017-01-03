@@ -1,24 +1,54 @@
 FROM ubuntu:16.04
 MAINTAINER Goran Jovanov <goran.jovanov@gmail.com>
 
-# bootstrap environment
-ENV DEPS_HOME="/root/janus"
+# define environment variables
+ENV USR_PATH="/usr"
+ENV JANUS_PATH="/root/janus"
 ENV SCRIPTS_PATH="/root/scripts"
 
+# define build arguments
+ARG JANUS_DEPS="\
+    libmicrohttpd-dev \
+    libcurl4-openssl-dev \
+    libjansson-dev \
+    libnice-dev \
+    libssl-dev \
+    libsofia-sip-ua-dev \
+    libglib2.0-dev \
+    libopus-dev \
+    libogg-dev \
+    pkg-config"
+
+ARG JANUS_DEPS_EXTRA="\
+    libavutil-dev \
+    libavcodec-dev \
+    libavformat-dev \
+    gengetopt \
+    libtool \
+    automake \
+    git-core \
+    build-essential \
+    cmake \
+    ca-certificates \
+    curl"
+
 # use aarnet mirror for quicker building while developing
-RUN sed -i 's/archive.ubuntu.com/mirror.aarnet.edu.au\/pub\/ubuntu\/archive/g' /etc/apt/sources.list
+#RUN sed -i 's/archive.ubuntu.com/mirror.aarnet.edu.au\/pub\/ubuntu\/archive/g' /etc/apt/sources.list
 
 # Add installation scripts
 ADD scripts/*.* $SCRIPTS_PATH/
 
 # Add certificates
-ADD certs/mycert.* $DEPS_HOME/certs/
+ADD certs/mycert.* $JANUS_PATH/certs/
 
 # Prepare the system
 RUN $SCRIPTS_PATH/setup.sh
 
 # Install dependencies
 RUN $SCRIPTS_PATH/dependencies.sh
+
+# Install dependencies - extras
+RUN $SCRIPTS_PATH/extras.sh
 
 # Update libsrtp 1.5.0 to avoid Janus issues with the default 1.4.x
 RUN $SCRIPTS_PATH/libsrtp.sh
@@ -42,7 +72,7 @@ EXPOSE 8081 8088 8089 8188 8189
 RUN $SCRIPTS_PATH/cleanup.sh
 
 # Add configs
-ADD conf/*.cfg $DEPS_HOME/etc/janus/
+ADD conf/*.cfg $JANUS_PATH/etc/janus/
 
 # Define the default start-up command
 CMD $SCRIPTS_PATH/startup.sh

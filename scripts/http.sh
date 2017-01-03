@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-cp $DEPS_HOME/share/janus/demos/* $DEPS_HOME/web
+cp $JANUS_PATH/share/janus/demos/* $JANUS_PATH/web/
 npm install http-server -g
 ln -s /usr/bin/nodejs /usr/bin/node
-http-server /root/janus/web/ --key /root/janus/certs/mycert.key --cert /root/janus/certs/mycert.pem -d false -p 8081 -c-1 --ssl &
+http-server $JANUS_PATH/web/ --key $JANUS_PATH/certs/mycert.key --cert $JANUS_PATH/certs/mycert.pem -d false -p 8081 -c-1 --ssl &
+
+npm install http -g
+nodejs /evapi.js >> /var/log/meetecho &
