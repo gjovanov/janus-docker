@@ -66,7 +66,7 @@ RUN $SCRIPTS_PATH/janus.sh
 RUN $SCRIPTS_PATH/http.sh
 
 # Declare the ports we use
-EXPOSE 8081 8088 8089 8188 8189
+EXPOSE 8081 7088 7889 7188 7988 8088 8089 8188 8189 10000:10200
 
 # Cleanup packages and files
 RUN $SCRIPTS_PATH/cleanup.sh
