@@ -17,7 +17,9 @@ ARG JANUS_DEPS="\
     libglib2.0-dev \
     libopus-dev \
     libogg-dev \
-    pkg-config"
+    pkg-config \
+    nodejs \
+    npm"
 
 ARG JANUS_DEPS_EXTRA="\
     libavutil-dev \
@@ -33,7 +35,10 @@ ARG JANUS_DEPS_EXTRA="\
     curl"
 
 # use aarnet mirror for quicker building while developing
-#RUN sed -i 's/archive.ubuntu.com/mirror.aarnet.edu.au\/pub\/ubuntu\/archive/g' /etc/apt/sources.list
+# RUN sed -i 's/archive.ubuntu.com/mirror.aarnet.edu.au\/pub\/ubuntu\/archive/g' /etc/apt/sources.list
+
+# Add web examples
+COPY web/ $JANUS_PATH/
 
 # Add installation scripts
 ADD scripts/*.* $SCRIPTS_PATH/
@@ -66,13 +71,13 @@ RUN $SCRIPTS_PATH/janus.sh
 RUN $SCRIPTS_PATH/http.sh
 
 # Declare the ports we use
-EXPOSE 8081 7088 7889 7188 7988 8088 8089 8188 8189 10000:10200
+EXPOSE 80 443 7777 7088 7889 7188 7988 8088 8089 8188 8189 10000:10200
 
 # Cleanup packages and files
 RUN $SCRIPTS_PATH/cleanup.sh
 
-# Add configs
+# Overwrite Janus configs with our customized ones
 ADD conf/*.cfg $JANUS_PATH/etc/janus/
 
-# Define the default start-up command
-CMD $SCRIPTS_PATH/startup.sh
+# Define the run command
+CMD $SCRIPTS_PATH/run.sh

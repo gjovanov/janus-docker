@@ -36,13 +36,15 @@ Plugins:
 
 ## Build
 
-`docker build -t efacilitation/docker-janus-webrtc-gateway`
+`docker build -t gjovanov/janus-docker`
 
 ## Ports
 
 | Port   | Description          |
 |--------|----------------------|
-| 8081   | HTML-Examples        |
+| 80     | HTML-Examples        |
+| 443    | Secure HTML-Examples |
+| 7777   | Event handler        |
 | 8088   | RESTful API          |
 | 8089   | Secure RESTful API   |
 | 8188   | WebSocket API        |
@@ -59,10 +61,12 @@ This container does not need any container linked to.
 
 ## Run
 
-`docker run -d -p 8081:8081 \
+`docker run -d \
+	-p 8081:80 -p 8082:443 \
+	-p 7777:7777 \
 	-p 7088:7088 -p 7889:7889 \
 	-p 7188:7188 -p 7988:7988 \
 	-p 8088:8088 -p 8089:8089 \
 	-p 8188:8188 -p 8189:8189 \
-        -p 10000-10200:10000-10200 \
-	gjovanov/janus-docker:latest`
+	-p 10000-10200:10000-10200 \
+	gjovanov/janus-docker`
