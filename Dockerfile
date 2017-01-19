@@ -38,7 +38,7 @@ ARG JANUS_DEPS_EXTRA="\
 # RUN sed -i 's/archive.ubuntu.com/mirror.aarnet.edu.au\/pub\/ubuntu\/archive/g' /etc/apt/sources.list
 
 # Add web examples
-COPY web/ $JANUS_PATH/
+ADD web/ $JANUS_PATH/web/
 
 # Add installation scripts
 ADD scripts/*.* $SCRIPTS_PATH/

@@ -65,7 +65,7 @@ var iceServers = [
      {
         'url': 'turn:138.201.48.14:5349?transport=tcp',
         'username': 'XplorifyAdmin',
-        credential: 'Xpl0r1fYy'
+        'credential': 'Xpl0r1fYy'
      }   
 ];
 
