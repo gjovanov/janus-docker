@@ -62,6 +62,8 @@ This container does not need any container linked to.
 ## Run
 
 `docker run -d \
+	--name="janus" \
+	--restart="on-failure:10" \
 	-p 8081:80 -p 8082:443 \
 	-p 7777:7777 \
 	-p 7088:7088 -p 7889:7889 \

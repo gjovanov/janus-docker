@@ -63,6 +63,11 @@ var iceServers = [
         'urls': 'stun:138.201.48.14:5349'
      },
      {
+        'url': 'turn:138.201.48.14:3478?transport=udp',
+        'username': 'XplorifyAdmin',
+        'credential': 'Xpl0r1fYy'
+     },
+     {
         'url': 'turn:138.201.48.14:5349?transport=tcp',
         'username': 'XplorifyAdmin',
         'credential': 'Xpl0r1fYy'
